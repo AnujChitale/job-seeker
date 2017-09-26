@@ -1,0 +1,4 @@
+LATER versions-
+
+
+parse mailbox for SUBJECT and add the entry into the app.

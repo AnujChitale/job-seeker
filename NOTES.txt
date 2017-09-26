@@ -1,0 +1,70 @@
+1. Ways to store "pwd" into the program char buffer directly.
+ELSE
+1. INSTALL approach to setup the enivornment variables into another file.
+
+
+ 
+
+ ::ProgFlow::
+
+1. Welcome screen
+2. Hit ESC to enter command
+3. enter command then follow
+ELSE
+hit ESC to return on main.
+
+Always, hit ESC to enter command, like vim.
+
+
+::CodeFileStruc::
+
+										parent
+	commands														interface
+	(individual files for commands?)								(menus for each input)
+	1. press ESC- return to main_scr								1. main_scr- Welcome tag, how to start, creator
+	2. !HELP- Display the help screen								2. single long menu to display all commands?
+	3. !LIST- Display all the companies serially					3. NEXT EDIT DEL PREV	
+			  3-4 entries per page, command to go next page
+	4. !EDIT=<x>- Edit the entry number as given by 'x'.				4. Goto the edit screen, edit tag 1.
+	5. !DELE=<x>- Delete the entry number given by 'x'.				5. Confirm delete?(Y/N)
+	6. !NEXT- Do next action- Display next page/ edit next field.	6. Prompt what's next to avoid confusion.
+	7. !PREV-  Do prev action- Display prev page/ edit prev field.	7. Prompt what's prev to avoid confusion.
+	8. !QUIT- safely quit the program.								8. Back to terminal safety.
+	9. !CMDS- Toggle the bottom cmd availability bar				9. Toggle the display of commands
+	10.!SAVE- Save the editions to the permanent database file.
+
+::ProgStruc::
+
+1. Display available commands for a particular menu at the bottom!
+E.g.
+Welcome to the Job Seeker 0.1
+
+HELP LIST QUIT
+
+2. EDIT functionality:
+EDIT will always start from the 1st field.
+Type NEXT PREV to sift thru the fields. 
+
+3. The "Cmd availability panel".
+Assign a bit-mask for commands. Pass the appropriate bit-mask to the current menu.
+
+4. system("") commands:
+Wrap it in another function to easily change for different OS.
+
+5. NEXT/ PREV functionality:
+Each menu will be attached with a list, Doubly linked list works best. NEXT will take us to the next attached sub-interface.
+Class IFace
+
+::DataBaseStruc::
+HTML style tags for easy parsing?
+E.g.
+<dbase>
+<ent1>
+<srno>1</srno>
+<name>Company xyz</name>
+<status>1st email<date>dd/mm/yyyy</date></status>
+</ent1>
+</dbase>
+
+::Good Practices;;
+1. Use fgets(), fputs(), fgetch() etc. instead of gets() etc.

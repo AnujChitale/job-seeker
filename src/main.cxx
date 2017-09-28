@@ -10,6 +10,7 @@
 #include "../inc/screen.h"
 #include "../inc/sizes.h"
 #include "../inc/menu.h"
+#include "../inc/style.h"
 
 
 using namespace std;
@@ -34,23 +35,18 @@ int main(void)
 		int j;
 		bool test_bool = false;
 
-		CmdBits_e tmp_arr[] = {ESCP,HELP,LIST,CMDS,QUIT,NO_CMD};
 
-		mask = Mainface_i.CreatMask(tmp_arr);
-		CBitflag TstFlag_f(mask,16);		
+		offset_row(20);
 
-		for (j=0; cmd_arr[j][0]; j++)
-		{
-			TstFlag_f.SetPlace(j);			
-			test_bool = TstFlag_f.ChkFlag();	
-			
-			if (test_bool == true)
-			{
-				fputs(" || ", stdout);
-				fputs(cmd_arr[j], stdout);
-			}			
-		}		
+
+		CmdBits_e tmp_arr[] = {ESCP,HELP,CMDS,QUIT, NO_CMD};
+		CCmdMenu testmenu(tmp_arr);
+		testmenu.SetCurrCmd(HELP);
+		// CCmdMenu testmenu(2);
+		testmenu.ShowCmdMenu();
+
 	}
+		
 
 	//TESTBLOCK
 
@@ -88,13 +84,39 @@ int main(void)
 	}
 
 	//TESTBLOCK
+	while (true)
 	{
-		CmdBits_e tmp_arr[] = {ESCP,HELP,CMDS,QUIT, NO_CMD};
-		CCmdMenu testmenu(tmp_arr);
-		testmenu.SetCurrCmd(HELP);
-		// CCmdMenu testmenu(2);
-		testmenu.ShowCmdMenu();
+		CMenu tst_menu;
+		KeyMap_e tst_key;
+		tst_key = tst_menu.ParseKey();
+
+		switch (tst_key)
+		{
+			case UP_KEY:
+			cout <<"UP_KEY or w pressed" <<endl;
+			break;
+
+			case DOWN_KEY:
+			cout <<"DOWN_KEY or z pressed" <<endl;
+			break;
+
+			case LEFT_KEY:
+			cout <<"LEFT_KEY or a pressed" <<endl;
+			break;
+
+			case RIGHT_KEY:
+			cout <<"RIGHT_KEY or s pressed" <<endl;
+			break;
+
+			default:
+			break;
+		}
+
+		if (tst_key == ESC_KEY)
+			break;
+		
 	}
+	
 	//TESTBLOCK
 
 	return 0;

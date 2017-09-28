@@ -5,6 +5,7 @@
 
 #include "../inc/commands.h"
 #include "../inc/menu.h"
+#include "../inc/style.h"
 
 using namespace std;
 
@@ -32,6 +33,9 @@ KeyMap_e CMenu::ParseKey(void)
 	KeyMap_e retval = KEY_ERR;
 
 	key = fgetc(stdin);
+	putchar(8);
+	putchar(32);
+	putchar(8);
 
 	switch (key)
 	{
@@ -52,7 +56,7 @@ KeyMap_e CMenu::ParseKey(void)
 		break;
 		
 		case RIGHT_KEY:
-		retval = RIGHT_KEY;
+		retval = RIGHT_KEY;		
 		break;
 		
 		case ESC_KEY:
@@ -146,6 +150,7 @@ void CCmdMenu::ShowCmdMenu(void)
 	for (i=0; allwd_cmd[i] && i<(MAX_CMDS-1); i++)
 	{
 		
+		offset_col(15);
 		if (allwd_cmd[i] == GetCurrCmd() && 0 != GetCurrCmd())
 		{
 			fputs(">>  ", stdout);

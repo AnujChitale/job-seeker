@@ -4,8 +4,9 @@
 #include <iostream>
 #include <stdio.h>
 
-
 #include "../inc/style.h"
+
+using namespace std;
 
 
 void offset_col(int col)
@@ -25,5 +26,6 @@ void offset_row(int row)
 	for (i= row;i> 0;i--)
 	{
 		fputs("\n", stdout);
+		//cout <<"\n" <<endl;
 	}
 }

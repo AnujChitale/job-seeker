@@ -11,6 +11,7 @@
 #include "../inc/sizes.h"
 #include "../inc/menu.h"
 #include "../inc/style.h"
+#include "../inc/keys.h"
 
 
 using namespace std;
@@ -18,16 +19,23 @@ using namespace std;
 CIface Mainface_i;
 CScreen MainScreen_s;
 
+
 int main(void)
 {
 	char c = 'a';
 	int i;
 	bool quit = false;
+	
+	
 
 	nokeybuff();
 	clearscr();
 
-	MainScreen_s.DispHeader();
+	//MainScreen_s.DispHeader();
+	//TESTBLOCK
+	
+	
+	//TESTBLOCK
 
 	//TESTBLOCK
 	{
@@ -35,89 +43,36 @@ int main(void)
 		int j;
 		bool test_bool = false;
 
-
-		offset_row(20);
-
-
 		CmdBits_e tmp_arr[] = {ESCP,HELP,CMDS,QUIT, NO_CMD};
-		CCmdMenu testmenu(tmp_arr);
-		testmenu.SetCurrCmd(HELP);
-		// CCmdMenu testmenu(2);
-		testmenu.ShowCmdMenu();
-
-	}
+		CCmdMenu testmenu(4, tmp_arr);
 		
+		// CCmdMenu testmenu(2);
 
-	//TESTBLOCK
-
-	while(true)
-	{
-		c = cin.get();
-		if (iscntrl(c) && 27==c)
-		{
-			clearscr();
-			fputs(header_arr[ESC_SCR], stdout);
-			cout <<endl;
-			//cout <<"Quit?(y/n)\r\n";
-			while (c != 'y')
-			{
-			c = cin.get();
-			if (c== 'y' || c== 'Y') {
-				quit = true;
-				break;
-				}	
+		while (true)
+		{			
+			KeyMap_e tst_key;
+			cout <<"Welcome to the test version of the app" <<endl;
+			tst_key = CKeyIn::ParseKey();
+			if (tst_key == ESC_KEY) {				
+				testmenu.ShowCmdMenu();
 			}
 
-			if (quit == true) {
-			clearscr();
-			break;
-			}		
+			while (true)
+			{				
+				KeyMap_e new_key;
+				bool exit = false;
 
-		}
-		else {
-			putchar(8);
-			putchar(32);
-			putchar(8);
-			//fputc(8,stdout);
-			//fputc(8,stdout);
-		}
+				new_key = CKeyIn::ParseKey();
+				if (new_key == ESC_KEY)
+					return 0;		
+			}
+		}	
 	}
-
-	//TESTBLOCK
-	while (true)
-	{
-		CMenu tst_menu;
-		KeyMap_e tst_key;
-		tst_key = tst_menu.ParseKey();
-
-		switch (tst_key)
-		{
-			case UP_KEY:
-			cout <<"UP_KEY or w pressed" <<endl;
-			break;
-
-			case DOWN_KEY:
-			cout <<"DOWN_KEY or z pressed" <<endl;
-			break;
-
-			case LEFT_KEY:
-			cout <<"LEFT_KEY or a pressed" <<endl;
-			break;
-
-			case RIGHT_KEY:
-			cout <<"RIGHT_KEY or s pressed" <<endl;
-			break;
-
-			default:
-			break;
-		}
-
-		if (tst_key == ESC_KEY)
-			break;
 		
-	}
+	//TESTBLOCK
+	
 	
 	//TESTBLOCK
-
+	clearscr();
 	return 0;
 }

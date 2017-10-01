@@ -7,9 +7,8 @@
 #include <stdio.h>
 
 //////////////////////////////Size macros//////////////////////////////
-#ifndef MAX_CMDS
 #define MAX_CMDS 15
-#endif
+#define CMD_TXT_LEN 7
 
 using namespace std;
 
@@ -34,7 +33,7 @@ typedef enum
 CmdBits_e;
 
 //Commands array to compare with the input.
-const char cmd_arr[MAX_CMDS][7] = {"NO_CMD", "ESCP", "HELP", "LIST", "ADDE", "DELE", "EDIT", "SAVE", "NEXT", "PREV", "CMDS", "QUIT", "\0"};
+const char ALLWD_CMDS[MAX_CMDS][CMD_TXT_LEN] = {"NO_CMD", "ESCP", "HELP", "LIST", "ADDE", "DELE", "EDIT", "SAVE", "NEXT", "PREV", "CMDS", "QUIT", "\0"};
 
 
 class CCmds
